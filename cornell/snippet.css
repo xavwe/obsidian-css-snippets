@@ -1,3 +1,10 @@
+/*
+name: cornell
+version: 1.0
+author: https://github.com/nopshar
+source: https://github.com/nopshar/Cornell
+*/
+
 :root {
     --cue-width: 120px;
     --cue-offset: var(--cue-width);
