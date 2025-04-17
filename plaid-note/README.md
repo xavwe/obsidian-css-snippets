@@ -1,5 +1,7 @@
 # Plaid Note
 
+![](./demo.png)
+
 - version: 1.0
 - author:
   - base: [gsarig](https://github.com/gsarig)
