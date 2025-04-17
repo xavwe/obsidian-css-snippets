@@ -1,4 +1,7 @@
-# Block Quote (Inline)
+# Inline Block Reference
+
+> [!CAUTION]
+> incompatible with new obsidian versions (see [note by author](https://gist.github.com/GitMurf/46c9ae78d6c3ce53d42d7832c7601271?permalink_comment_id=4422858#gistcomment-4422858))
 
 ![](./demo.gif)
 
