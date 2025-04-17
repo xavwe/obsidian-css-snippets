@@ -5,7 +5,7 @@
     height: 100%;
     left: 0;
     background-image:
-        linear-gradient(to bottom, #ddd 1px, transparent 1px);
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.3) 1px, transparent 1px);
     background-size: 
         100vw calc(var(--line-height-normal) * 1em);
     z-index: -1; /* Optional: Push the grid behind other elements */
