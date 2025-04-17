@@ -2,6 +2,8 @@
 
 ![](./demo.png)
 
+*source: [github](https://github.com/gsarig/obsidian-css-snippets)*
+
 - version: 1.0
 - author:
   - base: [gsarig](https://github.com/gsarig)
