@@ -1,6 +1,6 @@
 # Block Quote (Inline)
 
-https://github.com/user-attachments/assets/19735381-ab87-4ead-8d5d-4ae06e018329
+![](https://github.com/xavwe/obsidian-css-snippets/edit/main/block-quote-inline/demo.gif)
 
 *source: [githubusercontent.com](https://user-images.githubusercontent.com/64155612/115775798-29e91700-a368-11eb-957c-58e1b7ad4565.mp4)*
 
