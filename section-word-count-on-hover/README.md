@@ -2,6 +2,8 @@
 
 ![](./demo.png)
 
+*source: [github](https://github.com/gsarig/obsidian-css-snippets)*
+
 Shows the Section Word Count only on hover.
 
 - version: 1.0
