@@ -1,4 +1,4 @@
-# Plaid Note
+# Lined Note
 
 ![](./demo.png)
 
