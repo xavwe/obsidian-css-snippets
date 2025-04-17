@@ -1,6 +1,7 @@
 # Timeline Callout
 
 ![](https://forum.obsidian.md/uploads/default/optimized/3X/a/f/af2a5499623df19d3a59e85a685d8fb67a9bded1_2_304x499.png)
+
 *source: [Obsidian Forum](https://forum.obsidian.md/t/css-snippet-timeline-as-callout/93652?u=xavwe)*
 
 - version: 1.0

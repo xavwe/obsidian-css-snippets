@@ -1,6 +1,7 @@
 # Cornell
 
 ![](https://forum.obsidian.md/uploads/default/optimized/3X/7/1/71cb1f3874b7c2ff395b9240e8981942a510f154_2_540x500.jpeg)
+
 *source: [Obsidian Forum](https://forum.obsidian.md/t/how-do-i-implement-the-cornell-note-style-in-obsidian/75636/2?u=xavwe)*
 
 - version: 1.0
