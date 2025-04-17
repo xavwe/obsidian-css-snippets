@@ -1,58 +1,303 @@
 :root {
-    --block-ref-color: yellow;
-    --block-ref-link-color: transparent;
+    /* #7159de (similar to Obsidian purple) */
+    --block-ref-line-color: grey;
+    --block-ref-line-type: solid;
+    --block-ref-line-size: 2px;
+    /* Set to "inherit" for no bg color */
+    --block-ref-hover-bg-color: #d4d0d026;
 }
-.markdown-preview-view span[src*="^"].internal-embed:not(.image-embed) > div.markdown-embed {
-    border-top: none;
-    border-bottom-color: var(--block-ref-color);
-    border-bottom-style: dashed;
+
+/*
+***************************************************
+Live Preview (WYSIWYG Edit mode) inline block refs
+***************************************************
+*/
+
+/*
+Styling the embed when the reference embed is on its own line (NOT inline)
+This was added due to recent update on 2022_02_18 to include children bullets
+*/
+div.is-live-preview :not(.cm-line)>[src*="^"].internal-embed>.markdown-embed,
+div.is-live-preview :not(.cm-line)>[src*="^"].internal-embed>.markdown-embed>div>.markdown-preview-view {
     padding: 0px;
     margin: 0px;
 }
 
-.markdown-preview-view span[src*="^"].internal-embed:not(.image-embed),
-.markdown-preview-view span[src*="^"].internal-embed > .markdown-embed,
-.markdown-preview-view span[src*="^"].internal-embed > .markdown-embed > .markdown-embed-content,
-.markdown-preview-view span[src*="^"].internal-embed > .markdown-embed > .markdown-embed-content > .markdown-preview-view,
-.markdown-preview-view span[src*="^"].internal-embed > .markdown-embed > .markdown-embed-content > .markdown-preview-view > .markdown-preview-sizer,
-.markdown-preview-view span[src*="^"].internal-embed > .markdown-embed > .markdown-embed-content > .markdown-preview-view > .markdown-preview-sizer > div,
-.markdown-preview-view span[src*="^"].internal-embed > .markdown-embed > .markdown-embed-content > .markdown-preview-view > .markdown-preview-sizer > div > p,
-.markdown-preview-view span[src*="^"].internal-embed > .markdown-embed > .markdown-embed-content > .markdown-preview-view > .markdown-preview-sizer > div > div {
-    display: inline;
-    padding: 0px !important;
-    margin: 0px !important;
+div.is-live-preview :not(.cm-line)>[src*="^"].internal-embed>.markdown-embed {
+    border: none;
+    border-radius: 0px;
+    padding: 0px 25px 0px 0px;
 }
 
-/* Convert bullet list block refs inline (remove the bullet) */
-.markdown-preview-view span[src*="^"].internal-embed > .markdown-embed > .markdown-embed-content > .markdown-preview-view > .markdown-preview-sizer ul,
-.markdown-preview-view span[src*="^"].internal-embed > .markdown-embed > .markdown-embed-content > .markdown-preview-view > .markdown-preview-sizer li,
-.markdown-preview-view span[src*="^"].internal-embed > .markdown-embed > .markdown-embed-content > .markdown-preview-view > .markdown-preview-sizer li > div {
-    display: inline;
+div.is-live-preview :not(.cm-line)>[src*="^"].internal-embed:not(.image-embed) {
+    display: flex;
+    padding: 0 2px 0 4px;
 }
-.markdown-preview-view span[src*="^"].internal-embed:not(.image-embed) > div.markdown-embed > div.markdown-embed-content > div.markdown-preview-view > div.markdown-preview-section ul {
-    padding: 0px !important;
-    margin: 0px !important;
+
+div.is-live-preview :not(.cm-line)>[src*="^"].internal-embed p {
+    margin: 0px;
+    text-decoration: underline var(--block-ref-line-size) var(--block-ref-line-type) var(--block-ref-line-color);
+    text-underline-position: under;
+}
+
+div.is-live-preview :not(.cm-line)>[src*="^"].internal-embed:not(.image-embed)>div.markdown-embed:hover p {
+    background-color: var(--block-ref-hover-bg-color);
+}
+
+/* checkboxes in embeds on their own line */
+div.is-live-preview :not(.cm-line)>[src*="^"].internal-embed ul>li>input {
+    vertical-align: unset;
+    top: 2px;
+}
+
+/* max height change to give more room in the embed */
+div.is-live-preview :not(.cm-line)>[src*="^"].internal-embed>div>div.markdown-embed-content.markdown-embed-block {
+    max-height: 80vh;
+}
+
+/* TWO OPTIONS FOR STANDALONE BULLET LIST REFERENCES ON THEIR OWN LINE (NOT INLINE WITH OTHER TEXT)... CHOOSE ONE BELOW BY COMMENTING OUT THE OTHER */
+/* 1) WHEN YOU WANT THE BULLETS TO LOOK SIMILAR TO INLINE REFS WITH COLORED UNDERLINE UNDER EACH BULLET */
+/**/
+div.is-live-preview :not(.cm-line)>[src*="^"].internal-embed>.markdown-embed>.markdown-embed-content>.markdown-preview-view>.markdown-preview-sizer {
+    padding-bottom: unset !important;
+    min-height: unset !important;
+}
+
+div.is-live-preview :not(.cm-line)>[src*="^"].internal-embed>.markdown-embed>div>.markdown-preview-view>.markdown-preview-sizer.markdown-preview-section>div>ul {
+    margin: 0px;
+    padding-left: 20px;
+}
+
+div.is-live-preview :not(.cm-line)>[src*="^"].internal-embed li {
+    margin: 0px;
+    text-decoration: underline var(--block-ref-line-size) var(--block-ref-line-type) var(--block-ref-line-color);
+    text-underline-position: under;
+}
+
+/**/
+
+/* 2) WHEN YOU WANT THE BLOCK REFS ON THEIR OWN LINE TO LOOK MORE LIKE NATIVE EMBEDS BUT JUST LESS WASTED SPACE */
+/*
+        div.is-live-preview :not(.cm-line) > [src*="^"].internal-embed > .markdown-embed > div > .markdown-preview-view > .markdown-preview-sizer.markdown-preview-section > div > ul {
+            border: 2px solid var(--background-modifier-border);
+            border-radius: 10px;
+            margin: 0px;
+            padding: 10px 20px 10px 35px;
+        }
+    */
+
+/* Removing the children bullets from inline block refs due to recent update 2022_02_18 */
+div.is-live-preview .cm-line>[src*="^"].internal-embed>.markdown-embed>.markdown-embed-content>.markdown-preview-view>.markdown-preview-sizer li:not([data-line="0"]),
+div.is-live-preview .cm-line>[src*="^"].internal-embed>.markdown-embed>.markdown-embed-content>.markdown-preview-view>.markdown-preview-sizer li .list-collapse-indicator {
+    display: none;
+}
+
+div.is-live-preview .cm-line>[src*="^"].internal-embed>div.markdown-embed {
+    border: none;
+    border-radius: 0px;
+}
+
+/* Set the styling of the line */
+div.is-live-preview .cm-line>[src*="^"].internal-embed:not(.image-embed)>div.markdown-embed p,
+div.is-live-preview .cm-line>[src*="^"].internal-embed:not(.image-embed)>div.markdown-embed li {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-radius: 0px;
+    border-bottom: var(--block-ref-line-size) var(--block-ref-line-type) var(--block-ref-line-color);
+    padding: 0px;
+    margin: 0px;
+    padding-bottom: 2px;
+
+    /* Using underline instead of border like TfTHacker prefers
+    border: none;
+    border-radius: unset;
+    text-decoration-color: var(--block-ref-line-color);
+    text-decoration-style: var(--block-ref-line-type);
+    text-decoration-thickness: var(--block-ref-line-size);
+    text-decoration-line: underline;
+    text-underline-position: under;
+    text-underline-offset: 2px;
+    */
+}
+
+div.is-live-preview .cm-line>[src*="^"].internal-embed:not(.image-embed)>div.markdown-embed ol {
+    padding: 0px;
+    margin: 0px;
+}
+
+/* Need to slightly raise list items up or the border is hidden by the line below it (because of the padding-bottom: 2px added above) */
+div.is-live-preview .cm-line.HyperMD-list-line [src*="^"].internal-embed:not(.image-embed)>div.markdown-embed {
+    bottom: 0px;
+}
+
+div.is-live-preview .cm-line.HyperMD-list-line.HyperMD-task-line [src*="^"].internal-embed:not(.image-embed)>div.markdown-embed {
+    bottom: 3px;
+}
+
+/* Remove margin and padding and set display inline... also remove bullets */
+div.is-live-preview .cm-line>[src*="^"].internal-embed:not(.image-embed),
+div.is-live-preview .cm-line>[src*="^"].internal-embed>.markdown-embed,
+div.is-live-preview .cm-line>[src*="^"].internal-embed>.markdown-embed>.markdown-embed-content,
+div.is-live-preview .cm-line>[src*="^"].internal-embed>.markdown-embed>.markdown-embed-content>.markdown-preview-view,
+div.is-live-preview .cm-line>[src*="^"].internal-embed>.markdown-embed>.markdown-embed-content>.markdown-preview-view>.markdown-preview-sizer,
+div.is-live-preview .cm-line>[src*="^"].internal-embed>.markdown-embed>.markdown-embed-content>.markdown-preview-view>.markdown-preview-sizer>div,
+div.is-live-preview .cm-line>[src*="^"].internal-embed>.markdown-embed>.markdown-embed-content>.markdown-preview-view>.markdown-preview-sizer>div>p,
+div.is-live-preview .cm-line>[src*="^"].internal-embed>.markdown-embed>.markdown-embed-content>.markdown-preview-view>.markdown-preview-sizer>div>div,
+div.is-live-preview .cm-line>[src*="^"].internal-embed:not(.image-embed)>div.markdown-embed>div.markdown-embed-content>div.markdown-preview-view>div.markdown-preview-section ul,
+div.is-live-preview .cm-line>[src*="^"].internal-embed>.markdown-embed>.markdown-embed-content>.markdown-preview-view>.markdown-preview-sizer ul,
+div.is-live-preview .cm-line>[src*="^"].internal-embed>.markdown-embed>.markdown-embed-content>.markdown-preview-view>.markdown-preview-sizer li,
+div.is-live-preview .cm-line>[src*="^"].internal-embed>.markdown-embed>.markdown-embed-content>.markdown-preview-view>.markdown-preview-sizer li>div {
+    display: inline;
+    padding: 0px;
+    margin: 0px;
+}
+
+div.is-live-preview [src*="^"].internal-embed>.markdown-embed>.markdown-embed-content>.markdown-preview-view>.markdown-preview-sizer>div>blockquote {
+    display: inline-block;
+    padding: 0px 0px 4px 5px;
+    margin: 0px;
+    border: 0 solid var(--interactive-accent);
+    border-left-width: 7px;
+}
+
+/* Account for the extra space added on end of block reference text content (Licat needs to fix) */
+div.is-live-preview .cm-line>[src*="^"].internal-embed:not(.image-embed) {
+    /* Not going to apply this as Licat will fix eventually */
+    /*margin-right: -3px;*/
 }
 
 /* Hide the block ref link unless hovered */
-.markdown-preview-view span[src*="^"].internal-embed:not(.image-embed) > div.markdown-embed > div.markdown-embed-link {
+div.is-live-preview [src*="^"].internal-embed:not(.image-embed)>div.markdown-embed>div.markdown-embed-link {
     display: none;
-    color: var(--block-ref-link-color);
+    color: transparent;
     top: 0px;
-    left: 20px;
-}
-/* Show the block ref link on hover */
-.markdown-preview-view span[src*="^"].internal-embed:not(.image-embed) > div.markdown-embed:hover > div.markdown-embed-link {
-    display: block;
-}
-.markdown-preview-view span[src*="^"].internal-embed:not(.image-embed) > div.markdown-embed:hover {
-    border-bottom-style: solid;
+    left: 0px;
+    right: unset;
 }
 
-.markdown-preview-view span[src*="^"].internal-embed:not(.image-embed) > div.markdown-embed > div.markdown-embed-content > div.markdown-preview-view > div.markdown-preview-section {
-    min-height: 0px !important;
+/* Show the block ref link on hover */
+div.is-live-preview [src*="^"].internal-embed:not(.image-embed)>div.markdown-embed:hover>div.markdown-embed-link {
+    display: block;
+    width: 90%;
+    min-width: 150px;
+    max-width: 90%;
 }
+
+div.is-live-preview .cm-line>[src*="^"].internal-embed:not(.image-embed)>div.markdown-embed:hover p,
+div.is-live-preview .cm-line>[src*="^"].internal-embed:not(.image-embed)>div.markdown-embed:hover li {
+    background-color: var(--block-ref-hover-bg-color);
+    border-bottom-style: var(--block-ref-line-type);
+    /* Using underline instead of border like TfTHacker prefers
+    text-decoration-style: var(--block-ref-line-type);
+    */
+}
+
 /* Remove line breaks on multi-line block refs */
-.markdown-preview-view span[src*="^"].internal-embed > .markdown-embed > .markdown-embed-content > .markdown-preview-view > .markdown-preview-sizer br {
+div.is-live-preview .cm-line>[src*="^"].internal-embed>.markdown-embed>.markdown-embed-content>.markdown-preview-view>.markdown-preview-sizer br {
     /*display: none;*/
+}
+
+div.is-live-preview .cm-line>[src*="^"].internal-embed>.markdown-embed>.markdown-embed-content>.markdown-preview-view>.markdown-preview-sizer li input.task-list-item-checkbox {
+    top: 0px;
+    vertical-align: middle;
+    z-index: 1;
+    /* margin-left: revert; */
+    margin-left: 0px;
+    margin-right: 5px;
+}
+
+/* For embeds of code blocks */
+.markdown-source-view.mod-cm6.is-live-preview .cm-line>[src*="^"].internal-embed:not(.image-embed)>div.markdown-embed pre[class*="language-"] code {
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+/*
+***************************************************
+PREVIEW MODE inline block refs
+Works for both CM5 (Legacy) and CM6
+***************************************************
+*/
+div.workspace-leaf-content>div.view-content>div>div.markdown-preview-view>div.markdown-preview-section span[src*="^"].internal-embed:not(.image-embed)>div.markdown-embed {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-radius: 0px;
+    border-bottom: var(--block-ref-line-size) var(--block-ref-line-type) var(--block-ref-line-color);
+    padding: 0px;
+    margin: 0px;
+    padding-bottom: 2px;
+
+    /* Using underline instead of border like TfTHacker prefers
+    border: none;
+    border-radius: unset;
+    text-decoration-color: var(--block-ref-line-color);
+    text-decoration-style: var(--block-ref-line-type);
+    text-decoration-thickness: var(--block-ref-line-size);
+    text-decoration-line: underline;
+    text-underline-position: under;
+    text-underline-offset: 2px;
+    */
+}
+
+div.workspace-leaf-content>div.view-content>div>div.markdown-preview-view>div.markdown-preview-section span[src*="^"].internal-embed:not(.image-embed),
+div.workspace-leaf-content>div.view-content>div>div.markdown-preview-view>div.markdown-preview-section span[src*="^"].internal-embed>.markdown-embed,
+div.workspace-leaf-content>div.view-content>div>div.markdown-preview-view>div.markdown-preview-section span[src*="^"].internal-embed>.markdown-embed>.markdown-embed-content,
+div.workspace-leaf-content>div.view-content>div>div.markdown-preview-view>div.markdown-preview-section span[src*="^"].internal-embed>.markdown-embed>.markdown-embed-content>.markdown-preview-view,
+div.workspace-leaf-content>div.view-content>div>div.markdown-preview-view>div.markdown-preview-section span[src*="^"].internal-embed>.markdown-embed>.markdown-embed-content>.markdown-preview-view>.markdown-preview-sizer,
+div.workspace-leaf-content>div.view-content>div>div.markdown-preview-view>div.markdown-preview-section span[src*="^"].internal-embed>.markdown-embed>.markdown-embed-content>.markdown-preview-view>.markdown-preview-sizer>div,
+div.workspace-leaf-content>div.view-content>div>div.markdown-preview-view>div.markdown-preview-section span[src*="^"].internal-embed>.markdown-embed>.markdown-embed-content>.markdown-preview-view>.markdown-preview-sizer>div>p,
+div.workspace-leaf-content>div.view-content>div>div.markdown-preview-view>div.markdown-preview-section span[src*="^"].internal-embed>.markdown-embed>.markdown-embed-content>.markdown-preview-view>.markdown-preview-sizer>div>div,
+div.workspace-leaf-content>div.view-content>div>div.markdown-preview-view>div.markdown-preview-section span[src*="^"].internal-embed>.markdown-embed>.markdown-embed-content>.markdown-preview-view>.markdown-preview-sizer ul,
+div.workspace-leaf-content>div.view-content>div>div.markdown-preview-view>div.markdown-preview-section span[src*="^"].internal-embed>.markdown-embed>.markdown-embed-content>.markdown-preview-view>.markdown-preview-sizer li,
+div.workspace-leaf-content>div.view-content>div>div.markdown-preview-view>div.markdown-preview-section span[src*="^"].internal-embed>.markdown-embed>.markdown-embed-content>.markdown-preview-view>.markdown-preview-sizer li>div,
+div.workspace-leaf-content>div.view-content>div>div.markdown-preview-view>div.markdown-preview-section span[src*="^"].internal-embed:not(.image-embed)>div.markdown-embed>div.markdown-embed-content>div.markdown-preview-view>div.markdown-preview-section ul {
+    display: inline;
+    padding: 0px;
+    margin: 0px;
+}
+
+div.workspace-leaf-content>div.view-content>div>div.markdown-preview-view>div.markdown-preview-section span[src*="^"].internal-embed>.markdown-embed>.markdown-embed-content>.markdown-preview-view>.markdown-preview-sizer>div>blockquote {
+    display: inline-block;
+    padding: 0px;
+    margin: 0px;
+    padding-left: 5px;
+    border-top: none;
+    border-bottom: none;
+    border-right: none;
+}
+
+/* Hide the block ref link unless hovered */
+div.workspace-leaf-content>div.view-content>div>div.markdown-preview-view>div.markdown-preview-section span[src*="^"].internal-embed:not(.image-embed)>div.markdown-embed>div.markdown-embed-link {
+    display: none;
+    color: transparent;
+    top: 0px;
+    left: 0px;
+    right: unset;
+}
+
+/* Show the block ref link on hover */
+div.workspace-leaf-content>div.view-content>div>div.markdown-preview-view>div.markdown-preview-section span[src*="^"].internal-embed:not(.image-embed)>div.markdown-embed:hover>div.markdown-embed-link {
+    display: block;
+    width: 100%;
+    min-width: 150px;
+}
+
+div.workspace-leaf-content>div.view-content>div>div.markdown-preview-view>div.markdown-preview-section span[src*="^"].internal-embed:not(.image-embed)>div.markdown-embed:hover {
+    background-color: var(--block-ref-hover-bg-color);
+    border-bottom-style: var(--block-ref-line-type);
+    /* Using underline instead of border like TfTHacker prefers
+    text-decoration-style: var(--block-ref-line-type);
+    */
+}
+
+/* Remove line breaks on multi-line block refs */
+div.workspace-leaf-content>div.view-content>div>div.markdown-preview-view>div.markdown-preview-section span[src*="^"].internal-embed>.markdown-embed>.markdown-embed-content>.markdown-preview-view>.markdown-preview-sizer br {
+    /*display: none;*/
+}
+
+div.workspace-leaf-content>div.view-content>div>div.markdown-preview-view>div.markdown-preview-section span[src*="^"].internal-embed>.markdown-embed>.markdown-embed-content>.markdown-preview-view>.markdown-preview-sizer li input.task-list-item-checkbox {
+    z-index: 1;
+    margin-left: revert;
 }
