@@ -1,13 +1,12 @@
-/* Updated 2023-08-20 */
-
 .dashboard {
+    font-family: inherit;
     padding-left: 25px !important;
     padding-right: 25px !important;
     padding-top: 20px !important;
 }
 
 .dashboard .markdown-preview-section {
-    max-width: 100% !important;
+    max-width: 100%;
 }
 
 /* Title at top of the document */
