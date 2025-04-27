@@ -1,8 +1,5 @@
 # Spoiler Callout
 
- > [!CAUTION]
- > in newer obsidian versions the text is also shown when the user doesn't hover over the text
-
 ![](./demo.gif)
 
 *source: [github](https://github.com/gsarig/obsidian-css-snippets)*
